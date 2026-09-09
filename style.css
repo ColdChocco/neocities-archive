@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'Coolvetica';
+    src: url(assets/coolvetica.woff2);
+}
+
+* {
+    font-family: 'Coolvetica';
+    /*cursor: url('assets/mouse.png') 12 2, auto;*/
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight:normal;
+}
+
+p{
+    font-size: 25px;
+    margin: 0;
+}
+
+/* Both scenes fill the screen */
+.scene {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Backgrounds just for demo */
+.scene1 {
+    background: #ffffff;
+    color: white;
+}
+
+.scene2 {
+    background: brown;
+    color: white;
+
+    /* Start as a circle */
+    clip-path: circle(80px at 50% 50%);
+    transition: clip-path 1.75s cubic-bezier(.77, 0, .18, 1);
+    /*pointer-events: none;*/
+    cursor: pointer;
+}
+
+/* Expanded state */
+.scene2.expand {
+    clip-path: circle(80% at 50% 50%);
+    pointer-events: auto;
+    cursor: auto;
+}
+
+.scene2.miniHover {
+    clip-path: circle(95px at 50% 50%);
+    transition: clip-path 0.3s ease-out;
+}
+
+.scene2.shortTransition {
+    transition: clip-path 0.3s ease-out;
+}
+
+.about {
+    position: absolute;
+    left: 25%;
+    bottom: -300px;
+    width: 50%;
+    height: 500px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+    overflow: hidden;
+
+    transition: bottom 0.3s ease-in-out, height 0.3s ease-in-out;
+
+    color: #111;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 5px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 1010;
+    font-size: 20px;
+    user-select: none;
+    -webkit-user-drag: none;
+    display: flex;
+    font-family: 'Coolvetica';
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding-top: 19px;
+    overflow: hidden;
+    align-items: center;
+    align-self: center;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+
+@keyframes rotation {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.cd {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    animation: rotation 30s infinite linear;
+    /* 4s duration, infinite loop, linear speed */
+}
+
+img {
+    user-select: none;
+}
+
+
+/* The dim layer */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    z-index: 1000;
+}
+
+#overlay.black {
+    background: rgba(0,0,0);
+}
+
+/* active state */
+#overlay.active {
+    opacity: 1;
+}
+
+.focused {
+    z-index: 2000;
+}
+
+.popup {
+    position: absolute;
+    left: 50vw;
+    top:75px;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    background-color: #d191ff;
+    border-radius: 40px;
+    padding: 30px;
+    text-align: center;
+    animation: slideInFromTop 0.3s ease-out forwards;
+}
+
+.popup img{
+    cursor: grab;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+button {
+    font-size: 20px;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+button:active {
+    cursor: grabbing;
+    color: #fff;
+    background: #000;
+}
+
+.pagebutton {
+    font-size: 20px;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: grab;
+    text-decoration: none;
+    color:#000;
+    background-color: #f0f0f0;
+}
+
+.pagebutton:active {
+    cursor: grabbing;
+    color: #f0f0f0;
+    background-color: #000;
+}
